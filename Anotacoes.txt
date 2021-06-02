@@ -1,0 +1,52 @@
+GERANDO AS MIGRATIONS:
+Criar as classes que serao criadas as tabelas;
+
+Criar uma pasta chamada Data, e dentro dela criar uma classe de contexto, que herda de DbContext:
+
+Criar o metodo de override (pode digitar apenas "override on" que aparecera o metodo)
+public class HeroiContext : DbContext
+    {
+        public DbSet<Heroi> Herois { get; set; }
+        public DbSet<Batalha> Batalhas { get; set; }
+        public DbSet<Arma> Armas { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(""); //Aqui colocar a string de conexao para o banco de dados
+            base.OnConfiguring(optionsBuilder);
+        }
+    }
+
+
+Como Pegar string de conexao de BD:
+
+crie um arquivo com extensao .udl
+abra o arquivo
+informar o nome do servidor do SQL
+informar as credenciais
+selecionar o banco 
+selecionar Permitir salvamento
+Ok
+Testar conexao
+
+
+Botao direiro sobre o arquivo
+Abrir com...
+VS Code ou Bloco de Notas
+
+Copiar do PAssword em diante
+
+
+Em View >> Other Window >> Package MAnager Console vai abrir o terminal do Powershell.
+
+get-help entityframeworkcore - PRa saber todos os comandos do entityframeworkcore
+
+Add-Migration "nome da migration desejado"
+Exemplo: 
+Add-Migration initial
+
+Gerar script para criacao das bases: 
+Script-Migration
+
+Usar BD em outra instancia:
+scaffold-dbcontext -provider microsoft.entityframeworkcore.sqlserver -connection "Password=@cessoSQL1982;Persist Security Info=True;User ID=sa;Data Source=DESKTOP-IEK2ODL\SQLEXPRESS;Initial Catalog=HeroApp"
